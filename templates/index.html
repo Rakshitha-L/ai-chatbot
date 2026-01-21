@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Chatbot 🤖</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="chat-wrapper">
+    <div class="chat-header">
+        🤖 AI Chatbot
+        <span>Online</span>
+    </div>
+
+    <div id="chat-box" class="chat-box">
+        <div class="bot-msg">
+            Hello 👋 I am your AI assistant. How can I help you today?
+        </div>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send 🚀</button>
+    </div>
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("user-input");
+    let message = input.value.trim();
+    if (message === "") return;
+
+    let chatBox = document.getElementById("chat-box");
+
+    // User message
+    let userDiv = document.createElement("div");
+    userDiv.className = "user-msg";
+    userDiv.innerText = message;
+    chatBox.appendChild(userDiv);
+
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Typing indicator
+    let typingDiv = document.createElement("div");
+    typingDiv.className = "bot-msg typing";
+    typingDiv.innerText = "Typing...";
+    chatBox.appendChild(typingDiv);
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: message})
+    })
+    .then(res => res.json())
+    .then(data => {
+        chatBox.removeChild(typingDiv);
+
+        let botDiv = document.createElement("div");
+        botDiv.className = "bot-msg";
+        botDiv.innerText = data.reply;
+        chatBox.appendChild(botDiv);
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
+}
+</script>
+
+</body>
+</html>
