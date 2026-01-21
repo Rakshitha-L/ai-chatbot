@@ -1,6 +1,6 @@
-# 🤖 AI Chatbot using Transformers (DialoGPT)
+# 🤖 AI Chatbot using Transformers 
 
-A modern, context-aware AI chatbot built using a pretrained **Transformer model (DialoGPT)** with a **Flask backend** and a **colorful, interactive web frontend**.  
+A modern, context-aware AI chatbot built using a pretrained **Transformer model** with a **Flask backend** and a **colorful, interactive web frontend**.  
 This project demonstrates real-world usage of NLP, APIs, and full-stack integration.
 
 ---
@@ -45,4 +45,5 @@ No manual model training is required — a **pretrained transformer model** is u
 ---
 
 ## 📂 Project Structure
+##Author--L Rakshitha
 
